@@ -1,0 +1,300 @@
+/*-- scss:defaults --*/
+
+$teal:         #0891b2;
+$mint:         #06d6a0;
+$amber:        #f59e0b;
+$red:          #f43f5e;
+$ink:          #e2e8f0;
+$muted:        #94a3b8;
+$paper:        #020617;
+$surface:      #0f172a;
+$surface2:     #1e293b;
+$border:       #1e3a5f;
+
+/*-- scss:rules --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── BASE ── */
+body {
+  background-color: $paper;
+  color: $ink;
+  font-family: 'Inter', sans-serif;
+  font-size: 15.5px;
+  line-height: 1.85;
+}
+
+/* Hide default Quarto title — replaced by cover */
+h1.title         { display: none; }
+p.subtitle,
+p.author,
+p.date           { display: none; }
+.quarto-title-block { display: none; }
+#quarto-content  { background: $paper; }
+
+/* ── HEADINGS ── */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $teal;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  padding-bottom: 10px;
+  border-bottom: 2px solid $teal;
+  color: $teal;
+}
+
+h3 {
+  font-size: 1.1rem;
+  color: $mint;
+  margin-top: 2rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 0.85rem;
+  color: $amber;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Space Mono', monospace;
+}
+
+/* ── TEXT ── */
+p     { color: $ink; }
+strong { color: $teal; }
+
+a {
+  color: $teal;
+  text-decoration: none;
+  &:hover { color: $mint; text-decoration: underline; }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid $border;
+  margin: 2.5rem 0;
+}
+
+/* ── TABLE OF CONTENTS ── */
+#TOC {
+  background: $surface;
+  border: 1px solid $border;
+  border-left: 3px solid $teal;
+  border-radius: 6px;
+  padding: 20px;
+  font-size: 0.82rem;
+
+  .toc-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: $muted;
+    margin-bottom: 12px;
+  }
+
+  a {
+    color: $muted;
+    text-decoration: none;
+    transition: color 0.2s;
+    &:hover { color: $teal; }
+  }
+
+  li.active > a { color: $teal; font-weight: 600; }
+}
+
+/* ── CODE ── */
+pre.sourceCode {
+  background: #020617 !important;
+  border: 1px solid $border;
+  border-left: 3px solid $teal;
+  border-radius: 6px;
+  font-family: 'Space Mono', monospace !important;
+  font-size: 0.78rem;
+  padding: 1.2rem !important;
+}
+
+code {
+  font-family: 'Space Mono', monospace;
+  color: $mint;
+  background: rgba(6, 214, 160, 0.08);
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+
+.code-fold-btn {
+  background: $surface !important;
+  border: 1px solid $border !important;
+  color: $muted !important;
+  font-family: 'Space Mono', monospace !important;
+  font-size: 0.72rem !important;
+}
+
+/* ── TABLES ── */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.88rem;
+  margin: 1.5rem 0;
+  background: $surface;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+thead tr {
+  background: #0c2340;
+  color: $teal;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+tbody tr {
+  border-bottom: 1px solid $border;
+  transition: background 0.15s;
+  &:hover { background: rgba(8, 145, 178, 0.05); }
+}
+
+tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+td, th { padding: 11px 18px; color: $ink; }
+
+/* ── KPI CARDS ── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.kpi-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-bottom: 3px solid $teal;
+  border-radius: 8px;
+  padding: 1.2rem 1rem;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, $teal, transparent);
+  opacity: 0.3;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(8, 145, 178, 0.15);
+}
+
+.kpi-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: $teal;
+  line-height: 1.1;
+  font-family: 'Playfair Display', serif;
+}
+
+.kpi-value.positive { color: $mint !important; }
+.kpi-value.alert    { color: $red !important; }
+.kpi-value.warning  { color: $amber !important; }
+
+.kpi-label {
+  font-size: 0.68rem;
+  color: $muted;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-family: 'Space Mono', monospace;
+}
+
+/* ── INSIGHT BOXES ── */
+.insight-box {
+  background: $surface;
+  border-left: 4px solid $teal;
+  border-radius: 0 6px 6px 0;
+  padding: 1rem 1.3rem;
+  margin: 1.3rem 0;
+  font-size: 0.9rem;
+  color: $ink;
+}
+
+.insight-box.positive { border-left-color: $mint; }
+.insight-box.warning  { border-left-color: $amber; }
+.insight-box.alert    { border-left-color: $red; }
+
+.insight-box strong {
+  color: $teal;
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+}
+
+.insight-box.positive strong { color: $mint; }
+.insight-box.warning  strong { color: $amber; }
+.insight-box.alert    strong { color: $red; }
+
+/* ── PANEL TABSET ── */
+.panel-tabset .nav-tabs {
+  border-bottom: 2px solid $border;
+  gap: 0.3rem;
+}
+
+.panel-tabset .nav-link {
+  color: $muted !important;
+  background-color: $surface !important;
+  border: 1px solid $border !important;
+  border-radius: 6px 6px 0 0 !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1.1rem;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.panel-tabset .nav-link:hover {
+  color: $teal !important;
+  border-color: $teal !important;
+}
+
+.panel-tabset .nav-link.active {
+  color: $paper !important;
+  background-color: $teal !important;
+  border-color: $teal !important;
+}
+
+/* ── FOOTER ── */
+.footer-note {
+  text-align: center;
+  font-size: 0.72rem;
+  color: $muted;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid $border;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.05em;
+}
